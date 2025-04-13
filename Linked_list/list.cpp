@@ -21,7 +21,7 @@ class list
         node *getFirst() { return first; };
         void display();
         void Rdisplay(node *p);
-        int count_node();
+        int length();
         void create(int x);
         void insert(int x,int i);
         int sum();
@@ -72,7 +72,7 @@ void list::Rdisplay(node *p)
     }
 }
 
-int list::count_node()
+int list::length()
 {
     node *p = first;
     int c=0;
@@ -111,7 +111,7 @@ void list::insert(int x,int i)
         first = n;
         return ;
     }
-    if(i < 0  || i > count_node()+1)
+    if(i < 0  || i > length()+1)
     {
         return ;
     }
@@ -203,7 +203,7 @@ int list::remove(int i)
         return x;
     }
 
-    if(i < 1 || i>count_node())
+    if(i < 1 || i>length())
     {
         return -1;
     }
@@ -242,7 +242,7 @@ int main()
     l->insert(3,3);
     l->display();
     cout<<"Sum of elements: "<<l->sum()<<endl;
-    cout<<"Number of elements: "<<l->count_node()<<endl;
+    cout<<"Number of elements: "<<l->length()<<endl;
     cout<<"Maximum element: "<<l->max()<<endl;
     cout<<"Minimum element: "<<l->min()<<endl;
     cout<<"search for 4: "<<l->search(3)<<endl;
