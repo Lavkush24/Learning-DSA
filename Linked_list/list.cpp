@@ -232,7 +232,6 @@ list::~list()
 }
 
 
-
 int main()
 {
     list *l = new list();
@@ -250,5 +249,9 @@ int main()
     l->display();
     l->Rdisplay(l->getFirst());
     cout<<endl;
+    int a[] = {4,5,6,7,9};
+    list *m = new list(a,5);
+    m->insert(45,4);
+    m->display();
     return 0;
 }
