@@ -97,7 +97,14 @@ int stack::peek(int pos)
 
 int stack::stackTop()
 {
-    return top;
+    if(top == -1)
+    {
+        return -1;
+    }
+    else
+    {
+        return a[top];
+    }
 }
 
 
@@ -127,11 +134,12 @@ int main()
     st->push(8);
     st->push(34);
     st->push(35);
-    // st->pop();
-    // st->pop();
-    // st->pop();
+    st->push(89);
+    st->push(12);
+    st->display();
+    st->pop();
     st->display();
     cout<<st->stackTop()<<endl;
-    cout<<st->peek(1)<<endl;
+    cout<<st->peek(5)<<endl;
     return 0;
 }
