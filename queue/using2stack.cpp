@@ -71,10 +71,7 @@ int dequeue(stack *s1,stack *s2)
             }
         }
     }
-    else 
-    {
-        x = pop(s2);
-    }
+    x = pop(s2);
     return x;
 }
 
@@ -110,9 +107,9 @@ int main()
     s1->a = new int[s];
     s2->a = new int[s];
     enqueue(s1,23);
-    enqueue(s1,23);
-    enqueue(s1,23);
-    enqueue(s1,23);
+    enqueue(s1,56);
+    enqueue(s1,89);
+    enqueue(s1,12);
     dequeue(s1,s2);
     dequeue(s1,s2);
     dequeue(s1,s2);
