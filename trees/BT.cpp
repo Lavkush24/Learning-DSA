@@ -61,11 +61,62 @@ void preorder(node *p)
     preorder(p->Rchild);
 }
 
+void postorder(node *p) 
+{
+    if(!p)
+    {
+        return ;
+    }
+    postorder(p->Lchild);
+    postorder(p->Rchild);
+    cout<<p->data<<" ";
+}
+
+void inorder(node *p) 
+{
+    if(!p)
+    {
+        return ;
+    }
+    inorder(p->Lchild);
+    cout<<p->data<<" ";
+    inorder(p->Rchild);
+}
+
+void leveorder(node *p) 
+{
+    queue<node*> q;
+    node *temp;
+    cout<<p->data<<" ";
+    q.push(p);
+    while(!q.empty())
+    {
+        temp = q.front();
+        q.pop();
+        if(temp->Lchild)
+        {
+            cout<<temp->Lchild->data<<" ";
+            q.push(temp->Lchild);
+        }
+        if(temp->Rchild)
+        {
+            cout<<temp->Rchild->data<<" ";
+            q.push(temp->Rchild);
+        }
+    }
+}
+
 int main()
 {
     create();
     cout<<"Preorder: ";
     preorder(root);
+    cout<<"Postorder: ";
+    postorder(root);
+    cout<<"Inorder: ";
+    inorder(root);
+    cout<<"Level order";
+    leveorder(root);
     cout<<endl;
     return 0;
 }
