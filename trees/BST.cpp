@@ -18,6 +18,7 @@ bool RsearchTree(node* t,int key) {
     }
 }
 
+
 bool iterativeSearch(node *t, int key) {
     while(t != NULL) {
         if(key == t->data) {
@@ -34,6 +35,33 @@ bool iterativeSearch(node *t, int key) {
 }
 
 
+void insert(node *p,int key) {
+    node *t = NULL;
+
+    while(p != NULL) {
+        t = p;
+        if(p->data == key ) {
+            return ;
+        }
+        else if(p->data > key) {
+            p = p->Lchild;
+        }
+        else {
+            p = p->Rchild;
+        }
+    }
+
+    node *n = new node;
+    n->data = key;
+    n->Lchild = n->Rchild = NULL;
+    if(key < t->data) {
+        t->Lchild = n;
+    }
+    else {
+        t->Rchild = n;
+    }
+}
+
 
 int main() {
     Tree t;
@@ -41,5 +69,7 @@ int main() {
     t.inorderTraversal(t.getRoot());
     cout<<RsearchTree(t.getRoot(),12)<<endl;
     cout<<iterativeSearch(t.getRoot(),34)<<endl;
+    insert(t.getRoot(), 56);
+    t.inorderTraversal(t.getRoot());
     return 0;
 }
