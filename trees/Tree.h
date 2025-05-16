@@ -23,6 +23,7 @@ class Tree {
         void create();
         void inorder(node *t);
         void inorderTraversal(node *t);
+        node* search(node *t,int key);
 };
 
 void Tree::create() {
@@ -76,5 +77,22 @@ void Tree::inorderTraversal(node *t) {
     inorder(t);
     cout<<endl;
 }
+
+// node* Tree::search(node* t, int key) {
+//     if(t == NULL) {
+//         return ;
+//     }
+
+//     if(key == t->data) {
+//         return t;
+//     }
+//     else if(key < t->data) {
+//         return search(t->Lchild,key);
+//     }
+//     else {
+//         return search(t->Rchild,key);
+//     }
+//     return 
+// }
 
 #endif
