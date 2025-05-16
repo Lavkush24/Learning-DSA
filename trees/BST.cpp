@@ -37,7 +37,6 @@ bool iterativeSearch(node *t, int key) {
 
 void insert(node *p,int key) {
     node *t = NULL;
-
     while(p != NULL) {
         t = p;
         if(p->data == key ) {
@@ -63,13 +62,51 @@ void insert(node *p,int key) {
 }
 
 
+node* createByInsert(node *p, int key) {
+    node *n;
+
+    if(p == NULL) {
+        n = new node;
+        n->data = key ;
+        n->Lchild = n->Rchild = NULL;
+        return n;
+    }
+    if(key < p->data) {
+        p->Lchild = createByInsert(p->Lchild,key);
+    }
+    else {
+        p->Rchild = createByInsert(p->Rchild,key);
+    }
+    return p;
+}
+
+
+void inorder(node *p) {
+    if(!p) {
+        return ;
+    }
+    else {
+        inorder(p->Lchild);
+        cout<<p->data<<" ";
+        inorder(p->Rchild);
+    }
+}
+
+ 
 int main() {
     Tree t;
-    t.create();
-    t.inorderTraversal(t.getRoot());
-    cout<<RsearchTree(t.getRoot(),12)<<endl;
-    cout<<iterativeSearch(t.getRoot(),34)<<endl;
-    insert(t.getRoot(), 56);
-    t.inorderTraversal(t.getRoot());
+    // t.create();
+    // t.inorderTraversal(t.getRoot());
+    // cout<<RsearchTree(t.getRoot(),12)<<endl;
+    // cout<<iterativeSearch(t.getRoot(),34)<<endl;
+    // insert(t.getRoot(), 56);
+
+    
+    node *root = createByInsert(t.getRoot(),34);
+    createByInsert(root,23);
+    createByInsert(root,67);
+    createByInsert(root,2);
+    createByInsert(root,93);
+    t.inorderTraversal(root);
     return 0;
 }
