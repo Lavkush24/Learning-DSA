@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 #include "Tree.h"
+#include<stack>
+#include<climits>
 
 
 node* inOrderPredecessor(node *c) {
@@ -65,12 +67,62 @@ node *deleteNode(node *p,int key) {
     return p;
 } 
 
+ 
+
+void generateFromPreorder(int pre[], int n,node* &root) {
+    stack<node *> st;
+    int i=0; 
+    node *temp,*c;
+    if( root == NULL)
+        root = new node;
+        
+    root->data = pre[i++];
+    root->Lchild = root->Rchild = NULL;
+    c = root;
+
+    while(i < n) {
+        temp = new node;
+        temp->Lchild = temp->Rchild = NULL;
+        
+        if(c->data > pre[i]) {
+            temp->data = pre[i++];
+            c->Lchild = temp;
+            st.push(c);
+            c = temp;
+        }
+        else 
+        {
+            int d;
+            if(st.empty()) {
+                d = INT_MAX;
+            }
+            else {
+                d = (st.top())->data;
+            }
+            
+            if(pre[i] > c->data && pre[i] < d) {
+                temp->data = pre[i++];
+                c->Rchild = temp;
+                c = temp;
+            }
+            else {
+                c = st.top();
+                st.pop();
+            }
+        }
+    }
+}
+
 
 int main() {
     Tree t;
-    t.create();
-    t.inorderTraversal(t.getRoot());
-    deleteNode(t.getRoot(),45);
-    t.inorderTraversal(t.getRoot());
+    // t.create();
+    // t.inorderTraversal(t.getRoot());
+    // deleteNode(t.getRoot(),45);
+    // t.inorderTraversal(t.getRoot());
+    node *root = NULL;
+    int pre[] = {30,20,10,15,25,40,50,45};
+    generateFromPreorder(pre,8,root);
+    t.inorderTraversal(root);
     return 0;
 }

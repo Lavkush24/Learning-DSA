@@ -20,6 +20,7 @@ class Tree {
     public:
         Tree() { root = NULL;};
         node* getRoot() { return root; }; 
+        void setRoot(int val);
         void create();
         void inorder(node *t);
         void inorderTraversal(node *t);
@@ -71,6 +72,12 @@ void Tree::inorder(node *t) {
         cout<<t->data<<" ";
         inorder(t->Rchild);
     }
+}
+
+void Tree::setRoot(int val) {
+    root = new node;
+    root->data = val;
+    root->Lchild = root->Rchild = NULL;
 }
 
 void Tree::inorderTraversal(node *t) {
