@@ -36,10 +36,7 @@ node *deleteNode(node *p,int key) {
     if(p == NULL) {
         return NULL;
     }
-    if(p->Lchild == NULL && p->Rchild == NULL) {
-        delete p;
-        p = NULL;
-    }
+    
 
     if(key < p->data) {
         p->Lchild = deleteNode(p->Lchild,key);
@@ -49,6 +46,11 @@ node *deleteNode(node *p,int key) {
     }
     else 
     {
+        if(p->Lchild == NULL && p->Rchild == NULL) {
+            delete p;
+            return NULL;
+        }
+
         if(height(p->Lchild) > height(p->Rchild)) {
             temp = inOrderPredecessor(p->Lchild);
             p->data = temp->data;
