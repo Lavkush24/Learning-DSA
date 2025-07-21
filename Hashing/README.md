@@ -38,11 +38,30 @@
         - Double probing
 
 
-## Chaining 
+# Chaining 
 - here we are using linked list which store all the element comes at the place of the index 
 - there is no size limit here
 
 - here we do time analysis base on the loading factor (lambda) = totalelement/size   (here we assume that each hashtable index contain equal no of element to analysis)
 
 
+# Linear Probing 
+- (BOUNDED OF SIZE)
+- In Linear probing if collision occurs element placed at next empty space .
+- h'[x] = (h[x]%10 + f[i]) % 10 where f[i] = i , i= 0,1,2,3... this liner hash function represent the same statement of linear probing 
+    - here f[i] is the probing function 
+
+- loading factor [lambda] = number of key / size of hash table
+    - in linear probing [lambda] <= 0.5.
+    - that mean half of the hash table should be empty that help to fast search
+
+- average succesful time = 1/[lambda] ln[ 1 / (1-[lambda]) ]
+- average unsuccesful time = 1 / (1-[lambda])
+
+- whille {DELETE OPERATION} is performed we need to rearrage all element after it that time taking and increse complexcity 
+    - to reduce complexcity we use Rehashing (get out all element and again insert)
+    - therefore it not suggested not perform delete operation in linear probing
+    - But if want use flag 0,1 that repersent the key is present or not.
+    
+- linear probling also lead problem of primary clusterig element form groups and create clusters
 
