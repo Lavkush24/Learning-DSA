@@ -65,3 +65,20 @@
     
 - linear probling also lead problem of primary clusterig element form groups and create clusters
 
+
+# Quadratic probing 
+- the only difference is in the probing function here it is the p[i] = i*i
+    - so it help in prevent clustering of the elements
+
+- average successful search time   -ln(1-[lambda]) / [lambda]
+- average unsucessful search time  1/(1-[lambda])
+
+
+# Double Hashing
+- here we use two hash function in which other is behave as the prob for the hash function 
+- first hash function  h1[x] = x%10
+- second hash function h2[x] = R - (x% R) 
+    - second hash should not result 0 
+    - and cover all the index in the table
+- modified hash h'[x] = (h1[x] + i*(h2[x])) % 10 where i=0,1,2,3...
+
