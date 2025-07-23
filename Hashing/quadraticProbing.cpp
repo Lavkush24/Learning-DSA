@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+#include<string>
 
 class QuadraticProbingHashTable {
     public:
@@ -22,16 +23,17 @@ class QuadraticProbingHashTable {
         }
 
         void insert(int c) {
-            for(int i=0; i<=keys*2; i++) {
-                int idx = hashFunction(c,i);
-                if(*(hash+idx) == -1) {
-                    *(hash+idx) = c;
-                    break;
-                }
+            int i=0;
+            int idx = hashFunction(c,i);
+            while(*(hash+idx) != -1) {
+                idx = hashFunction(c,i++);
             }
+
+            *(hash+idx) = c;
         }
 
-        void display() {
+        void display(string message) {
+            cout<<message<<endl;
             for(int i=0; i<keys*2; i++) {
                 cout<<"["<<i<<"]: ";
                 if(*(hash+i) == -1) {
@@ -69,7 +71,7 @@ int main() {
     qh.insert(24);
     qh.insert(14);
 
-    qh.display();
+    qh.display("Hash Table <-------Quadratic Probing-------->");
     cout<<"Key found at index: "<<qh.search(9)<<endl;
     return 0;
 }
