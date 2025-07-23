@@ -82,3 +82,16 @@
     - and cover all the index in the table
 - modified hash h'[x] = (h1[x] + i*(h2[x])) % 10 where i=0,1,2,3...
 
+
+# Various Hash function 
+- ### Mod
+    - h[x] = (x % size) + 1 (if want not include 0)
+- ### Mid Square
+    - find square of the key. let [11]*[11] = 121
+    - find second digit of it . for 11 it is 2 
+    - so, idx = 2
+- ### Folding
+    - here you reduce the size of the number if large 
+    - eg. 123456 here i divide into pair group and add them
+    - 12 + 34 + 56 = 102 so idx = 102
+    - futher you perform other operation like mod and again folding etc.
