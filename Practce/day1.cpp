@@ -49,7 +49,7 @@ vector<int> takeInputarr() {
 
 
 
-///using sliding window 
+///using sliding window  (combine all one's together)
 int slideSwapCount(vector<int> arr) {
     int s=0,e=0;
     int n = arr.size();
