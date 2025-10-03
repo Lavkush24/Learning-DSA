@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 #include<climits>
+#include<list>
 
 
 void bubble_sort(int arr[],int s) {
@@ -190,6 +191,74 @@ void count_sort(int arr[],int s) {
 
 
 
+
+/*----------------------------------- BUCKET SORT  and RADIX SORT   ---------------------*/
+
+void bucket_sort(int arr[],int n) {
+    int m = max(arr,n);
+
+    list<int> *a = new list<int>[m+1];
+
+    // for(int i=0; i<m+1; i++) {
+    //     a[i].push_back();
+    // }
+
+    for(int i=0; i<n; i++) {
+        a[arr[i]].push_back(arr[i]);
+    }
+
+    int j=0;
+    for(int i=0; i<m+1; i++) {
+        while(!a[i].empty()) {
+            arr[j] = a[i].front();
+            a[i].pop_front(); 
+            j++;
+        }
+    }
+
+    delete[] a;
+}
+
+
+int count_digit(int m) {
+    int count = 0;
+    while(m > 0) {
+        count++;
+        m = m/10;
+    }
+    return count;
+}
+
+void radix_sort(int arr[],int n) {
+    int m = max(arr,n);
+
+    int pass = count_digit(m);
+    list<int> *a = new list<int>[10];
+
+    int div = 1;
+    while(pass > 0) {
+        for(int i=0; i<n; i++) {
+            int k = (arr[i]/div) % 10;
+            a[k].push_back(arr[i]);
+        }
+
+        int j=0;
+        for(int i=0; i<10; i++) {
+            while(!a[i].empty()) {
+                arr[j] = a[i].front();
+                a[i].pop_front(); 
+                j++;
+            }
+        }
+        div = div*10;
+        pass--;
+    }
+
+}
+
+
+
+
 void print(int arr[],int s) {
     for(int i =0; i<s-1; i++) {
         cout<<arr[i]<<" ";
@@ -200,9 +269,9 @@ void print(int arr[],int s) {
 int main() {
     
     int l[] = {4,6,7,81,2,3,4,22};
-    int t = sizeof(l)/sizeof(l[0]);;
+    int t = sizeof(l)/sizeof(l[0]);
     
-    count_sort(l,t);
+    radix_sort(l,t);
     print(l,t);
     return 0;
 }
