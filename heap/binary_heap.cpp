@@ -52,7 +52,7 @@ class max_heap {
 
             int i =0;
             int j = 2*i + 1;
-            while(j < size) {
+            while(j < size-1) {
                 if(arr[j+1] > arr[j]) {
                     j = j+1;
                 }
@@ -67,8 +67,16 @@ class max_heap {
                     break;
                 }
             }
-
             return temp;
+        }
+
+        void heap_sort() {
+            int n = size;
+            for(int i=0; i<n; i++) {
+                int t = delete_max();
+                arr[n-i-1] = t;
+            }
+            size = n;
         }
 };
 
@@ -79,12 +87,7 @@ int main() {
     max_heap *mh = new max_heap();
 
     mh->create_heap();
+    mh->heap_sort();
     mh->print_heap();
-    cout<<mh->delete_max()<<endl;
-    cout<<mh->delete_max()<<endl; 
-    cout<<mh->delete_max()<<endl;
-    cout<<mh->delete_max()<<endl;
-    mh->print_heap();
-
     return 0;
 }
