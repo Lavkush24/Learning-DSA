@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<climits>
 using namespace std;
 
 
@@ -89,6 +90,50 @@ void pattern2(string s,int i,string ss) {
 }
 
 
+bool isPalindrome(string s) {
+    if(s.length() == 1) {
+        return true;
+    }
+
+    if(s.length() == 0) {
+        return false;
+    }
+
+    string t = "";
+
+    for(int i=s.length()-1; i>=0; i--) {
+        t.push_back(s[i]);
+    }
+
+    return s==t ? true : false;
+}
+
+void subStr(string &s,int start,int end, vector<string>& ss) {
+
+    if(start == s.length()) {
+        return ;
+    }
+
+    if(end == s.length()) {
+        subStr(s,start+1,start+1,ss);
+        return ;
+    }
+    
+    if(isPalindrome(s.substr(start,end-start+1))) {
+        ss.push_back(s.substr(start,end-start+1));
+    }
+    subStr(s,start,end+1,ss);
+}
+
+
+void subStrIterate(string &s,vector<string>& ss) {
+        for(int i=0; i<s.length(); i++) {
+            for(int j=i; j<s.length(); j++) {
+                ss.push_back(s.substr(i,j-i+1));
+            }
+        }
+    }
+
 int main() {
     // cout<<minPlatform({100,300,600,700,800,820,820},{500,400,800,720,830,900})<<endl;
     // cout<<minPlatform({1000,935,1100},{1200,1240,1130})<<endl;
@@ -96,7 +141,28 @@ int main() {
     // int ss[10];
     // int arr[3] = {1,2,3};
     // subSeqence(arr,3,0,ss,0);
-    string s = "";
-    pattern2("abc",0,s);
+    // string s = "";
+    // pattern2("abc",0,s);
+
+    vector<string> str;
+    string s = "babad";
+    subStrIterate(s,str);
+
+    int max = 0;
+    string p = "";
+
+    for(int i=0; i<str.size(); i++) {
+        int temp = str[i].length();
+        // cout<<temp<<" ";
+        if(max < temp) {
+            max = temp;
+            p = str[i];
+        }
+    }
+
+    cout<<p<<endl;
+    // for(int i=0; i<str.size(); i++) {
+    //     cout<<str[i]<<endl;
+    // }
     return 0;
 }
